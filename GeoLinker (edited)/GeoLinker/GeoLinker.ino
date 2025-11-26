@@ -132,7 +132,7 @@ void setup() {
   geo.setApiKey(apiKey);
   geo.setDeviceID(deviceID);
   geo.setUpdateInterval_seconds(updateInterval);
-  geo.setDebugLevel(DEBUG_BASIC); // Debug verbosity Options: DEBUG_NONE, DEBUG_BASIC, DEBUG_ VERBOSE
+  geo.setDebugLevel(DEBUG_VERBOSE); // Debug verbosity Options: DEBUG_NONE, DEBUG_BASIC, DEBUG_ VERBOSE
   geo.enableOfflineStorage(enableOfflineStorage);
   geo.enableAutoReconnect(enableAutoReconnect);
   geo.setOfflineBufferLimit(offlineBufferLimit); // for small MCUs
