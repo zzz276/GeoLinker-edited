@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Basic colors -->
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    
+    <!-- Primary colors - Blue theme (perfect for maps/tracking) -->
+    <color name="primary_blue">#2196F3</color>
+    <color name="primary_blue_dark">#1976D2</color>
+    <color name="primary_blue_light">#BBDEFB</color>
+    
+    <!-- Accent colors -->
+    <color name="accent_teal">#009688</color>
+    <color name="accent_green">#4CAF50</color>
+    
+    <!-- Neutral colors -->
+    <color name="surface_light">#FFFFFF</color>
+    <color name="surface_dark">#121212</color>
+    <color name="background_light">#F5F5F5</color>
+    <color name="background_dark">#000000</color>
+    
+    <!-- Text colors -->
+    <color name="text_primary_light">#212121</color>
+    <color name="text_primary_dark">#FFFFFF</color>
+    <color name="text_secondary_light">#757575</color>
+    <color name="text_secondary_dark">#B0B0B0</color>
+</resources>

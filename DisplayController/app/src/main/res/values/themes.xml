@@ -1,0 +1,29 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Base.Theme.DisplayController" parent="Theme.Material3.DayNight.NoActionBar">
+        <!-- Primary color for app bars and key UI elements -->
+        <item name="colorPrimary">@color/primary_blue</item>
+        <item name="colorPrimaryVariant">@color/primary_blue_dark</item>
+        
+        <!-- Secondary color for accents -->
+        <item name="colorSecondary">@color/accent_teal</item>
+        <item name="colorSecondaryVariant">@color/accent_green</item>
+        
+        <!-- Background colors -->
+        <item name="android:colorBackground">@color/background_light</item>
+        <item name="colorSurface">@color/surface_light</item>
+        
+        <!-- Text colors -->
+        <item name="android:textColorPrimary">@color/text_primary_light</item>
+        <item name="android:textColorSecondary">@color/text_secondary_light</item>
+        
+        <!-- Status bar -->
+        <item name="android:statusBarColor">@color/primary_blue_dark</item>
+        <item name="android:windowLightStatusBar">false</item>
+        
+        <!-- Toolbar/AppBar -->
+        <item name="colorOnPrimary">@color/white</item>
+    </style>
+
+    <style name="Theme.DisplayController" parent="Base.Theme.DisplayController" />
+</resources>

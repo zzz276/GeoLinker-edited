@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/nav_back"
+        android:title="Go Back" />
+    <item
+        android:id="@+id/nav_forward"
+        android:title="Go Forward" />
+    <item
+        android:id="@+id/nav_refresh"
+        android:title="Refresh" />
+    <item
+        android:id="@+id/nav_home"
+        android:title="Go to Home" />
+    <item
+        android:id="@+id/nav_help"
+        android:title="@string/help" />
+    <item
+        android:id="@+id/nav_logout"
+        android:title="@string/logout" />
+</menu>
