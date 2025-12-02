@@ -1,21 +1,36 @@
 import express from 'express';
-import http from 'http';
 import { Server } from 'socket.io';
+import { WebSocketServer } from 'ws';
 
 const app = express();
-const server = http.createServer(app);
-const io = socketIo(server);
+const httpServer = app.listen(3000, () => { console.log('Socket.IO server running on port 3000'); });
 
-io.on('connection', socket => {
-  console.log('Client connected');
+// WebSocket server for ESP32
+const wss = new WebSocketServer({ port: 8080 }, () => { console.log('WebSocket server running on port 8080'); });
 
-  // Example: ESP32 sends GPS data here
-  socket.on('gpsUpdate', data => {
-    console.log('Received GPS:', data);
-    io.emit('gpsUpdate', JSON.parse(data)); // broadcast to all clients
+// Handle ESP32 connections
+wss.on('connection', ws => {
+  console.log('ESP32 connected');
+
+  ws.on('message', message => {
+    try {
+      const data = JSON.parse(message);
+      console.log('Received GPS:', data);
+
+      // Broadcast to all Socket.IO clients
+      io.emit('location', data);
+    } catch (err) { console.error('Invalid JSON:', err); }
   });
+
+  ws.on('close', () => { console.log('ESP32 disconnected'); });
 });
 
-server.listen(3000, () => {
-  console.log('Server running on port 3000');
+// Socket.IO server for mobile clients
+const io = new Server(httpServer, { cors: { origin: '*' }});
+
+// Handle mobile client connections
+io.on('connection', socket => {
+  console.log('Mobile client connected');
+
+  socket.on('disconnect', () => { console.log('Mobile client disconnected'); });
 });
