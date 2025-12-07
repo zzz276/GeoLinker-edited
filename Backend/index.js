@@ -3,7 +3,7 @@ import { Server } from 'socket.io';
 import { WebSocketServer } from 'ws';
 
 const app = express();
-const httpServer = app.listen(3000, () => { console.log('Socket.IO server running on port 3000'); });
+const httpServer = app.listen(3000, '0.0.0.0', () => { console.log('Socket.IO server running on port 3000'); });
 
 // WebSocket server for ESP32
 const wss = new WebSocketServer({ port: 8080 }, () => { console.log('WebSocket server running on port 8080'); });

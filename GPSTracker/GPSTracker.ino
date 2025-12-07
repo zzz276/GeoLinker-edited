@@ -1,20 +1,19 @@
-#include <ArduinoWebsockets.h>
+#include <AsyncTCP.h>
+#include <ESPAsyncWebServer.h>
 #include <TinyGPSPlus.h>
 #include <WiFi.h>
 #include "time.h"
 
-using namespace websockets;
-
 const char* ssid = "양인계 (楊仁季)";
 const char* password = "8fe8vk8s59dmrer";
-const char* websockets_server = "ws://echo.websocket.org:8080";
 const char* ntpServer = "pool.ntp.org";
 const long gmtOffset_sec = 7 * 3600; // Jakarta GMT+7
 const int daylightOffset_sec = 0;
 
-WebsocketClient client;
-TinyGPSPlus gps;
+AsyncWebServer server(80);
+AsyncWebSocket ws("/ws");
 HardwareSerial SerialGPS(1);
+TinyGPSPlus gps;
 
 String getTimestamp() {
   struct tm timeinfo;
@@ -27,35 +26,65 @@ String getTimestamp() {
   return String(buffer);
 }
 
+void sendGpsData() {
+  if (gps.location.isValid()) {
+    String json = "{";
+    json += "\"lat\": " + String(gps.location.lat(), 6) + ",";
+    json += "\"lng\": " + String(gps.location.lng(), 6) + ",";
+    json += "\"time\": \"" + getTimestamp() + "\"";
+    json += "}";
+
+    ws.textAll(json); // broadcast to all connected clients
+    Serial.println("Sent: " + json);
+  }
+}
+
+void onWsEvent(AsyncWebSocket *server, AsyncWebSocketClient *client, AwsEventType type, void *arg, uint8_t *data, size_t len) {
+  if (type == WS_EVT_CONNECT) {
+    Serial.printf("Client %u connected\n", client->id());
+    client->text("{\"status\":\"connected\"}");
+  }
+  else if (type == WS_EVT_DISCONNECT) { Serial.printf("Client %u disconnected\n", client->id()); }
+}
+
 void setup() {
   Serial.begin(115200);
   SerialGPS.begin(9600, SERIAL_8N1, 16, 17); // RX=16, TX=17
+  delay(1000);
 
+  Serial.println("Connecting to WiFi...");
+  WiFi.mode(WIFI_STA);
   WiFi.begin(ssid, password);
   while(WiFi.status() != WL_CONNECTED) {
     delay(500);
     Serial.print(".");
   }
 
-  Serial.println("WiFi connected");
+  if (WiFi.status() == WL_CONNECTED) {
+    Serial.print("\nWiFi connected. IP: ");
+    Serial.println(WiFi.localIP());
+  }
+
   configTime(gmtOffset_sec, daylightOffset_sec, ntpServer);
 
-  // Connect to Node.js Socket.IO server (WebSocket transport)
-  client.connect(websockets_server);
+  ws.onEvent(onWsEvent);
+  server.addHandler(&ws);
+
+  // Optional: a simple HTTP index to verify connectivity
+  // server.on("/", HTTP_GET, [](AsyncWebServerRequest *request) { request->send(200, "text/plain", "ESP32 WebSocket server is running. Connect to ws://<ESP32_IP>/ws"); });
+
+  server.begin();
+  Serial.println("WebSocket server started on /ws");
 }
 
 void loop() {
-  client.poll();
+  while(SerialGPS.available() > 0) { gps.encode(SerialGPS.read()); }
 
-  while(SerialGPS.available() > 0) {
-    gps.encode(SerialGPS.read());
-    if(gps.location.isUpdated()) {
-      String payload = "{ \"lat\": " + String(gps.location.lat(), 6) +
-                       ", \"lng\": " + String(gps.location.lng(), 6) +
-                       ", \"time\": \"" + getTimestamp() + "\" }";
-      client.send(payload);
-      Serial.println("Sent: " + payload);
-      delay(1000);
-    }
+  // Send GPS data every 2 seconds if valid
+  static unsigned long lastSend = 0;
+
+  if (millis() - lastSend > 2000) {
+    sendGpsData();
+    lastSend = millis();
   }
 }
