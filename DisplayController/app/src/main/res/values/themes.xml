@@ -1,4 +1,4 @@
-<resources xmlns:tools="http://schemas.android.com/tools">
+<resources>
     <!-- Base application theme. -->
     <style name="Base.Theme.DisplayController" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Primary color for app bars and key UI elements -->

@@ -1,23 +1,7 @@
 <resources>
-    <string name="app_name">My Tracker</string>
-
-    <!-- Strings used for menu -->
-    <string name="help">Help</string>
-    <string name="logout">Logout</string>
-
-    <!-- Login validation strings -->
-    <string name="invalid_email">Please enter a valid email address</string>
-    <string name="invalid_password">Please enter an at least 8 characters long password</string>
-
-    <!-- Web navigation menu strings -->
-    <string name="nav_back">Go Back</string>
-    <string name="nav_forward">Go Forward</string>
-    <string name="nav_refresh">Refresh</string>
-    <string name="nav_home">Go to Home</string>
-
-    <!-- Help dialog strings - GeoLinker specific -->
-    <string name="help_title">How to Use GeoLinker</string>
-    <string name="help_welcome">Welcome to GeoLinker! This app helps you track and monitor your devices using real-time location data.</string>
+    <!-- Help dialog strings -->
+    <string name="help_title">How to Use</string>
+    <string name="help_welcome">Welcome to My Tracker! This app helps you track and monitor your devices using real-time location data.</string>
     <string name="help_getting_started">Getting Started:</string>
     <string name="help_device_id">Your device ID is set as \"My Tracker\" - you can see this in the web app interface</string>
     <string name="help_view_map">View the map to see the current location and movement of your tracked devices</string>
@@ -31,17 +15,28 @@
     <string name="help_nav_back">Go Back - Return to the previous page you viewed</string>
     <string name="help_nav_forward">Go Forward - Move to the next page in history (if available)</string>
     <string name="help_nav_refresh">Refresh - Reload the current page to get the latest data</string>
-    <string name="help_nav_home">Go to Home - Return to the main GeoLinker dashboard</string>
-    <string name="help_tips">Tips for Best Experience:</string>
-    <string name="help_tip_1">All navigation stays within the app - you won\'t be redirected to external browsers</string>
-    <string name="help_tip_2">Use the device back button to navigate through your browsing history</string>
-    <string name="help_tip_3">Refresh the page regularly to see the latest location updates</string>
-    <string name="help_tip_4">If you encounter any issues, use the Refresh option from the navigation menu</string>
     <string name="got_it">Got it!</string>
     <string name="logout_confirmation">Are you sure you want to logout?</string>
     <string name="cancel">Cancel</string>
 
+    <!-- Login validation strings -->
+    <string name="invalid_email">Please enter a valid email address</string>
+    <string name="invalid_password">Please enter an at least 8 characters long password</string>
+
+    <!-- Menu strings -->
+    <string name="back">Go Back</string>
+    <string name="forward">Go Forward</string>
+    <string name="refresh">Refresh</string>
+    <string name="help">Help</string>
+    <string name="logout">Logout</string>
+    <string name="history">History</string>
+    <string name="history_message">View your location history and movement patterns over time. This feature allows you to track past locations and analyze movement data.</string>
+    <string name="fab_zoom_in">Zoom In</string>
+    <string name="fab_zoom_out">Zoom Out</string>
+    <string name="fab_history">GPS Data History</string>
+
     <!-- Others -->
+    <string name="app_name">My Tracker</string>
     <string name="welcome">Welcome</string>
     <string name="please_sign_in_to_continue">Please sign in to continue</string>
     <string name="email_address">Email Address</string>
@@ -49,4 +44,7 @@
     <string name="login">Login</string>
     <string name="navigation_menu">Navigation Menu</string>
     <string name="title_activity_maps">MapsActivity</string>
+    <string name="delete">Delete</string>
+    <string name="no_gps_data">No GPS data available</string>
 </resources>
+

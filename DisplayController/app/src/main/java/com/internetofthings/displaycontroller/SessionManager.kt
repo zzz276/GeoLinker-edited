@@ -26,16 +26,12 @@ class SessionManager(context: Context) {
     /**
      * Check if user is logged in
      */
-    fun isLoggedIn(): Boolean {
-        return prefs.getBoolean(KEY_IS_LOGGED_IN, false)
-    }
+    fun isLoggedIn(): Boolean { return prefs.getBoolean(KEY_IS_LOGGED_IN, false) }
     
     /**
      * Get logged in user's email
      */
-    fun getUserEmail(): String? {
-        return prefs.getString(KEY_USER_EMAIL, null)
-    }
+    fun getUserEmail(): String? { return prefs.getString(KEY_USER_EMAIL, null) }
     
     /**
      * Clear login state (logout)

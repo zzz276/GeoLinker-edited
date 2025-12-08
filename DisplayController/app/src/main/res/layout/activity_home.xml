@@ -3,22 +3,64 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
     android:fitsSystemWindows="true"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
     tools:context=".HomeActivity">
 
     <include layout="@layout/activity_map" />
 
+    <!-- GPS History FAB -->
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:contentDescription="@string/fab_history"
+        android:id="@+id/fabHistory"
+        android:layout_gravity="bottom|end"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="80dp"
+        android:layout_marginEnd="@dimen/fab_margin"
+        android:layout_width="wrap_content"
+        app:backgroundTint="?attr/colorPrimary"
+        app:srcCompat="@android:drawable/ic_menu_recent_history"
+        app:tint="@android:color/white" />
+
+    <!-- Zoom Out FAB -->
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:contentDescription="@string/fab_zoom_out"
+        android:id="@+id/fabZoomOut"
+        android:layout_gravity="bottom|end"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="144dp"
+        android:layout_marginEnd="@dimen/fab_margin"
+        android:layout_width="wrap_content"
+        app:backgroundTint="?attr/colorPrimary"
+        app:srcCompat="@drawable/ic_zoom_out"
+        app:tint="@android:color/white" />
+
+    <!-- Zoom In FAB -->
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:contentDescription="@string/fab_zoom_in"
+        android:id="@+id/fabZoomIn"
+        android:layout_gravity="bottom|end"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="208dp"
+        android:layout_marginEnd="@dimen/fab_margin"
+        android:layout_width="wrap_content"
+        app:backgroundTint="?attr/colorPrimary"
+        app:srcCompat="@drawable/ic_zoom_in"
+        app:tint="@android:color/white" />
+
+    <!-- Navigation Menu FAB -->
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:contentDescription="@string/navigation_menu"
         android:id="@+id/fab"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
-        android:layout_marginEnd="@dimen/fab_margin"
+        android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/fab_margin"
+        android:layout_marginEnd="@dimen/fab_margin"
+        android:layout_width="wrap_content"
         app:backgroundTint="?attr/colorPrimary"
-        app:tint="@android:color/white"
-        app:srcCompat="@drawable/accessible_menu_24px" />
+        app:srcCompat="@drawable/accessible_menu_24px"
+        app:tint="@android:color/white" />
+
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
+

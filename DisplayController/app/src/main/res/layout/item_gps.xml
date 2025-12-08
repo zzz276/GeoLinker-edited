@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="8dp"
+    app:cardCornerRadius="8dp"
+    app:cardElevation="4dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="16dp">
+
+        <!-- Delete button -->
+        <ImageButton
+            android:id="@+id/btnDelete"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="@string/delete"
+            android:src="@android:drawable/ic_menu_delete"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:tint="@color/error_red" />
+
+        <!-- Latitude -->
+        <TextView
+            android:id="@+id/tvLatitudeLabel"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Latitude"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/tvLatitudeValue"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintHorizontal_weight="1"
+            tools:ignore="HardcodedText" />
+
+        <TextView
+            android:id="@+id/tvLatitudeValue"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            android:textAlignment="viewEnd"
+            app:layout_constraintStart_toEndOf="@+id/tvLatitudeLabel"
+            app:layout_constraintEnd_toStartOf="@+id/btnDelete"
+            app:layout_constraintTop_toTopOf="@+id/tvLatitudeLabel"
+            app:layout_constraintHorizontal_weight="1"
+            tools:text="37.774900" />
+
+        <!-- Longitude -->
+        <TextView
+            android:id="@+id/tvLongitudeLabel"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Longitude"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            android:layout_marginTop="8dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/tvLongitudeValue"
+            app:layout_constraintTop_toBottomOf="@+id/tvLatitudeLabel"
+            app:layout_constraintHorizontal_weight="1"
+            tools:ignore="HardcodedText" />
+
+        <TextView
+            android:id="@+id/tvLongitudeValue"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            android:textAlignment="viewEnd"
+            android:layout_marginTop="8dp"
+            app:layout_constraintStart_toEndOf="@+id/tvLongitudeLabel"
+            app:layout_constraintEnd_toStartOf="@+id/btnDelete"
+            app:layout_constraintTop_toBottomOf="@+id/tvLatitudeValue"
+            app:layout_constraintHorizontal_weight="1"
+            tools:text="-122.419400" />
+
+        <!-- Time -->
+        <TextView
+            android:id="@+id/tvTimeLabel"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Tracked"
+            android:textSize="14sp"
+            android:textColor="@android:color/darker_gray"
+            android:layout_marginTop="8dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/tvTimeValue"
+            app:layout_constraintTop_toBottomOf="@+id/tvLongitudeLabel"
+            app:layout_constraintHorizontal_weight="1"
+            tools:ignore="HardcodedText" />
+
+        <TextView
+            android:id="@+id/tvTimeValue"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textSize="14sp"
+            android:textColor="@android:color/darker_gray"
+            android:textAlignment="viewEnd"
+            android:layout_marginTop="8dp"
+            app:layout_constraintStart_toEndOf="@+id/tvTimeLabel"
+            app:layout_constraintEnd_toStartOf="@+id/btnDelete"
+            app:layout_constraintTop_toBottomOf="@+id/tvLongitudeValue"
+            app:layout_constraintHorizontal_weight="1"
+            tools:text="2024-01-15 10:30:45" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</com.google.android.material.card.MaterialCardView>
+

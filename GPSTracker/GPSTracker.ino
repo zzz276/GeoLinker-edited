@@ -15,6 +15,8 @@ AsyncWebSocket ws("/ws");
 HardwareSerial SerialGPS(1);
 TinyGPSPlus gps;
 
+String lastJson = "";
+
 String getTimestamp() {
   struct tm timeinfo;
 
@@ -26,16 +28,21 @@ String getTimestamp() {
   return String(buffer);
 }
 
-void sendGpsData() {
+void buildGpsJson() {
   if (gps.location.isValid()) {
-    String json = "{";
-    json += "\"lat\": " + String(gps.location.lat(), 6) + ",";
-    json += "\"lng\": " + String(gps.location.lng(), 6) + ",";
-    json += "\"time\": \"" + getTimestamp() + "\"";
-    json += "}";
+    lastJson = "{";
+    lastJson += "\"lat\": " + String(gps.location.lat(), 6) + ",";
+    lastJson += "\"lng\": " + String(gps.location.lng(), 6) + ",";
+    lastJson += "\"time\": \"" + getTimestamp() + "\"";
+    lastJson += "}";
+  }
+}
 
-    ws.textAll(json); // broadcast to all connected clients
-    Serial.println("Sent: " + json);
+void sendGpsData() {
+  buildGpsJson();
+  if (lastJson.length() > 0) {
+    ws.textAll(lastJson); // broadcast to all connected clients
+    Serial.println("Sent: " + lastJson);
   }
 }
 
@@ -43,8 +50,19 @@ void onWsEvent(AsyncWebSocket *server, AsyncWebSocketClient *client, AwsEventTyp
   if (type == WS_EVT_CONNECT) {
     Serial.printf("Client %u connected\n", client->id());
     client->text("{\"status\":\"connected\"}");
-  }
-  else if (type == WS_EVT_DISCONNECT) { Serial.printf("Client %u disconnected\n", client->id()); }
+  } else if (type == WS_EVT_DATA) {
+    String msg = "";
+    for (size_t i = 0; i < len; i++) { msg += (char) data[i]; }
+
+    Serial.printf("Received from client %u: %s\n", client->id(), msg.c_str());
+    if (msg == "SYNC") {
+      // Respond immediately with cached JSON
+      if (lastJson.length() > 0) {
+        client->text(lastJson);
+        Serial.println("SYNC response: " + lastJson);
+      } else { client->text("{\"error\":\"No valid GPS data\"}"); }
+    }
+  } else if (type == WS_EVT_DISCONNECT) { Serial.printf("Client %u disconnected\n", client->id()); }
 }
 
 void setup() {

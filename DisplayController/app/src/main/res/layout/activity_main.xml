@@ -1,66 +1,67 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
     android:gravity="center"
-    android:layout_width="match_parent"
+    android:id="@+id/main"
     android:layout_height="match_parent"
+    android:layout_width="match_parent"
     android:orientation="vertical"
     android:padding="32dp"
     tools:context=".MainActivity">
 
     <TextView
-        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="48dp"
+        android:layout_width="wrap_content"
         android:text="@string/welcome"
         android:textSize="32sp"
         android:textStyle="bold" />
 
     <TextView
-        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="32dp"
+        android:layout_width="wrap_content"
         android:text="@string/please_sign_in_to_continue"
-        android:textSize="16sp"
-        android:textColor="@android:color/darker_gray" />
+        android:textColor="@android:color/darker_gray"
+        android:textSize="16sp" />
 
     <com.google.android.material.textfield.TextInputLayout
-        android:layout_width="match_parent"
+        android:hint="@string/email_address"
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
-        android:hint="@string/email_address">
+        android:layout_width="match_parent">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:autofillHints="email"
             android:id="@+id/etEmail"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
             android:inputType="textEmailAddress"
-            android:autofillHints="email" />
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:layout_width="match_parent"
+        android:hint="@string/password"
         android:layout_height="wrap_content"
         android:layout_marginBottom="24dp"
-        android:hint="@string/password">
+        android:layout_width="match_parent">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:autofillHints="password"
             android:id="@+id/etPassword"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
             android:inputType="textPassword"
-            android:autofillHints="password" />
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
     <Button
         android:id="@+id/btnLogin"
-        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:padding="16dp"
         android:text="@string/login"
-        android:textSize="16sp"
-        android:padding="16dp" />
+        android:textSize="16sp" />
 
 </LinearLayout>
+

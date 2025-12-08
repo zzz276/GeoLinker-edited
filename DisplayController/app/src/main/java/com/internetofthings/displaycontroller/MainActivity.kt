@@ -21,6 +21,7 @@ class MainActivity : AppCompatActivity() {
             // User is logged in, navigate directly to HomeActivity
             startActivity(Intent(this, HomeActivity::class.java))
             finish()
+
             return
         }
         
@@ -73,15 +74,12 @@ class MainActivity : AppCompatActivity() {
      * Validates email format: must contain "@" and at least one "."
      */
 
-    private fun isValidEmail(email: String): Boolean {
-        return email.contains("@") && email.contains(".")
-    }
+    private fun isValidEmail(email: String): Boolean { return email.contains("@") && email.contains(".") }
 
     /**
      * Validates password format: must contain at least eight characters
      */
 
-    private fun isValidPassword(password: String): Boolean {
-        return password.length < 8
-    }
+    private fun isValidPassword(password: String): Boolean { return password.length >= 8 }
 }
+
