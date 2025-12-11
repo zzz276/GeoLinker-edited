@@ -34,14 +34,16 @@ class GPSAdapter(
         private fun formatTrackedTime(raw: String): String {
             val inputPatterns = listOf(
                 "yyyy-MM-dd HH:mm:ss",
-                "yyyy-MM-dd'T'HH:mm:ss",
-                "yyyy-MM-dd'T'HH:mm:ss'Z'"
+                "yyyy-MM-ddTHH:mm:ss",
+                "yyyy-MM-dd'T'HH:mm:ssZ"
             )
+
+            raw.removeSuffix("+0700")
 
             inputPatterns.forEach { pattern ->
                 try {
-                    val parsed = LocalDateTime.parse(raw, DateTimeFormatter.ofPattern(pattern, Locale.getDefault()))
-                    val outputFormatter = DateTimeFormatter.ofPattern("EEEE, d MMMM yyyy 'at' HH:mm:ss", Locale.getDefault())
+                    val parsed = LocalDateTime.parse(raw, DateTimeFormatter.ofPattern(pattern))
+                    val outputFormatter = DateTimeFormatter.ofPattern("d MMMM yyyy 'at' HH:mm:ss", Locale.ENGLISH)
                     return parsed.format(outputFormatter)
                 } catch (_: Exception) {
                     // try next pattern
